@@ -34,6 +34,11 @@ jobs:
 
           BACKEND_PORT=8000
           BACKEND_PORT_EXPOSE=8080
+
+
+          POSTGRES_URL=jdbc:postgresql://tp3-db-1:5432/myapp
+          POSTGRES_USER=ynov
+          POSTGRES_PASSWORD=ynov
           EOF
 
       - name: Build and start services
@@ -44,11 +49,11 @@ jobs:
         working-directory: tp3
         run: |
           echo "Waiting for backend to be ready..."
-          timeout 60 sh -c 'until docker compose exec -T app curl -f http://localhost:8080/api/health || exit 1; do sleep 2; done'
+          timeout 60 sh -c 'until docker compose exec -T backend curl -f http://localhost:8080/api/health || exit 1; do sleep 2; done'
 
       - name: Run tests
         working-directory: tp3
-        run: mvn test
+        run: docker compose exec -T backend mvn test
 
       - name: Stop services
         working-directory: tp3
