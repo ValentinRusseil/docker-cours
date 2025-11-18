@@ -43,7 +43,7 @@ jobs:
 
       - name: Build and start services
         working-directory: tp3
-        run: docker compose up --build
+        run: docker compose up --build -d
 
       - name: Wait for services to be ready
         working-directory: tp3
