@@ -7,5 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SimpleRestAppApplication {
     public static void main(String[] args) {
         SpringApplication.run(SimpleRestAppApplication.class, args);
+        System.out.println("SimpleRestAppApplication started");
     }
 }
